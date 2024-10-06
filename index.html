@@ -2,41 +2,45 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Calculator</title>
-  <script src="script.js"></script>
-  <link rel="stylesheet" href="style.css"
+  <link rel="stylesheet" href="styles.css" >
+  <script src="main.js" ></script>
+  <title>Document</title>
 </head>
 <body>
-  <h1 id="header">My Calculator Thing</h1>
-  <div id="calculator">
-    <input id="display" type="text" readonly>
-    <div id="numbers">
-      <button>7</button>
-      <button>8</button>
-      <button>9</button>
-      <button>4</button>
-      <button>5</button>
-      <button>6</button>
-      <button>1</button>
-      <button>2</button>
-      <button>3</button>
-      <button id="zero">0</button>
-    </div>
+   
+  <form name="calc">
+    <input id="display" type="text" name="display" placeholder="0">
+    <br>
+  
+    <input class='number' type="button" value="7" >
+    <input class='number' type="button" value="8" >
+    <input class='number' type="button" value="9" >
+    <input type="button" value="+" >
+    <br>
+ 
+    <input class='number' type="button" value="4" >
+    <input class='number' type="button" value="5" >
+    <input class='number' type="button" value="6" >
+    <input type="button" value="-" >
+    <br>
+ 
+    <input class='number' type="button" value="1" >
+    <input class='number'  type="button" value="2" >
+    <input class='number' type="button" value="3" >
+    <input type="button" value="*" >
+    <br>
 
-      <button id="decimal">.</button>
+    <input class='number' type="button" value="0" >
+    <input id="decimal" type="button" value="." >
+    <input type="button" value="C"  >
+    <input type="button" value="/" >
+    <br>
 
-
-      <button id="clear">C</button>
-
-    <div id="operators">
-      <button class="operator">+</button>
-      <button class="operator">-</button>
-      <button class="operator">X</button>
-      <button class="operator">/</button>
-      <button class="operator">%</button>
-      <button class="operator">=</button>
-    </div>
-  </div>
+    <input type="button" value="AVG" style="width: 90px" >
+    <input type="button" value="=" style="width: 90px"  >
+ </form>
+  
 </body>
 </html>
