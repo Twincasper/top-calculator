@@ -1,48 +1,38 @@
-@import url('https://fonts.googleapis.com/css2?family=Bungee+Tint&display=swap');
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+html, body{
+  height: 100%;
 }
 
-body {
-  font-family: Arial, sans-serif;
-  background: rgb(192,38,38);
-  background: linear-gradient(87deg, rgba(192,38,38,1) 0%, rgba(0,0,0,1) 100%);
+body{
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
 
-h1 {
-  text-align: center;
-  font-size: 40px;
-  font-family: "Bungee Tint", system-ui;
-  font-weight: 400;
-  font-style: normal;
-}
-
-#calculator {
-  
-  margin: 0 auto;
-  width: 300px;
-}
-
-#calculator #numbers {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-}
-
-#calculator #operators {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-}
-
-button {
-  width: 80%;
+form{
+  width: 270px; 
+  background-color: #d3c2fc; 
+  border-radius: 12px; 
   padding: 10px;
-  font-size: 20px;
-  font-weight: 600;
-  background: #f5f5f5;
-  border: none;
-  cursor: pointer;
-  border-radius: 50%;
+  margin: 0 auto;
+  margin-top: 15%;
+  text-align: center;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+input[type="text"]{
+  width:250px; 
+  height:60px; 
+  text-align:right; 
+  font-size:40px; 
+  border-radius: 8px; 
+  margin:3px;
+}
+
+input[type="button"]{
+  width:60px; 
+  height:60px; 
+  font-size:30px; 
+  border-radius:8px; 
+  margin:1px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  background-color: #b7ffb9;
 }
