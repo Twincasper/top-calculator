@@ -109,3 +109,56 @@ document.querySelector('input[value="="]').addEventListener('click', function() 
 document.querySelector('input[value="C"]').addEventListener('click', function() {
   resetCalculator();
 });
+
+document.addEventListener('keydown', function(event) {
+  const key = event.key;
+
+  if (!isNaN(key)) {
+    if (!isSecondNumber) {
+      firstNum += key;
+      appendToDisplay(key);
+    } else {
+      secondNum += key;
+      appendToDisplay(key);
+    }
+  }
+
+  if (operators.includes(key)) {
+    if (currentOperator && secondNum) {
+      evaluateExpression();
+    }
+    currentOperator = key;
+    appendToDisplay(key);
+    isSecondNumber = true;
+  }
+
+  if (key === '.') {
+    if (!isSecondNumber) {
+      if (!firstNum.includes('.')) {
+        firstNum += '.';
+        appendToDisplay('.');
+      } else {
+        window.alert('Only one decimal is allowed in the first number.');
+      }
+    } else {
+      if (!secondNum.includes('.')) {
+        secondNum += '.';
+        appendToDisplay('.');
+      } else {
+        window.alert('Only one decimal is allowed in the second number.');
+      }
+    }
+  }
+
+  if (key === 'Enter') {
+    if (firstNum && currentOperator && secondNum) {
+      evaluateExpression();
+    } else {
+      window.alert('Incomplete expression.');
+    }
+  }
+
+  if (key === 'Backspace') {
+    resetCalculator();
+  }
+});
