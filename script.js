@@ -1,6 +1,9 @@
 const numbers = document.querySelectorAll('.number');
 const operators = ['+', '-', '*', '/'];
-let expression = '';
+let firstNum = '';
+let secondNum = '';
+let currentOperator = '';
+let isSecondNumber = false;
 
 const display = document.getElementById('display');
 
@@ -13,46 +16,28 @@ function clearDisplay() {
 }
 
 function resetCalculator() {
-  expression = '';
+  firstNum = '';
+  secondNum = '';
+  currentOperator = '';
+  isSecondNumber = false;
   clearDisplay();
 }
 
 function evaluateExpression() {
-  let operator;
-  
-  if (expression.includes('+')) {
-    operator = '+';
-  } else if (expression.includes('-')) {
-    operator = '-';
-  } else if (expression.includes('*')) {
-    operator = '*';
-  } else if (expression.includes('/')) {
-    operator = '/';
-  } else {
-    window.alert('Invalid expression. You need two numbers and an operator.');
-    return;
-  }
+  const num1 = parseFloat(firstNum);
+  const num2 = parseFloat(secondNum);
 
-  const parts = expression.split(operator);
-
-  if (parts.length !== 2) {
-    window.alert('Invalid expression. You need two numbers.');
-    return;
-  }
-
-  const firstNum = parseFloat(parts[0]);
-  const secondNum = parseFloat(parts[1]);
-
-  if (isNaN(firstNum) || isNaN(secondNum)) {
+  if (isNaN(num1) || isNaN(num2)) {
     window.alert('Invalid numbers.');
     return;
   }
 
-  const result = operate(operator, firstNum, secondNum);
+  const result = operate(currentOperator, num1, num2);
   display.value = result;
-  expression = result.toString();
+  firstNum = result.toString();
+  secondNum = '';
+  isSecondNumber = false;
 }
-
 
 function operate(operator, num1, num2) {
   switch (operator) {
@@ -71,31 +56,54 @@ function operate(operator, num1, num2) {
 
 numbers.forEach(button => {
   button.addEventListener('click', function() {
-    appendToDisplay(this.value);
-    expression += this.value;
+    if (!isSecondNumber) {
+      firstNum += this.value;
+      appendToDisplay(this.value);
+    } else {
+      secondNum += this.value;
+      appendToDisplay(this.value);
+    }
   });
 });
 
 document.querySelector('#decimal').addEventListener('click', function() {
-  if (display.value.includes('.')) {
-    window.alert('Only one decimal is allowed in a single number.');
-    return;
+  if (!isSecondNumber) {
+    if (!firstNum.includes('.')) {
+      firstNum += '.';
+      appendToDisplay('.');
+    } else {
+      window.alert('Only one decimal is allowed in the first number.');
+    }
+  } else {
+    if (!secondNum.includes('.')) {
+      secondNum += '.';
+      appendToDisplay('.');
+    } else {
+      window.alert('Only one decimal is allowed in the second number.');
+    }
   }
-  appendToDisplay(this.value);
-  expression += this.value;
 });
 
 document.querySelectorAll('input[type="button"]').forEach(button => {
   if (operators.includes(button.value)) {
     button.addEventListener('click', function() {
+      if (currentOperator && secondNum) {
+        evaluateExpression();
+      }
+
+      currentOperator = this.value;
       appendToDisplay(this.value);
-      expression += this.value;
+      isSecondNumber = true;
     });
   }
 });
 
 document.querySelector('input[value="="]').addEventListener('click', function() {
-  evaluateExpression();
+  if (firstNum && currentOperator && secondNum) {
+    evaluateExpression();
+  } else {
+    window.alert('Incomplete expression.');
+  }
 });
 
 document.querySelector('input[value="C"]').addEventListener('click', function() {
