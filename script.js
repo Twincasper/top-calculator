@@ -87,6 +87,11 @@ document.querySelector('#decimal').addEventListener('click', function() {
 document.querySelectorAll('input[type="button"]').forEach(button => {
   if (operators.includes(button.value)) {
     button.addEventListener('click', function() {
+      if (currentOperator && !secondNum) {
+        window.alert('ONLY ONE OPERATOR PLEASE');
+        return;
+      }
+
       if (currentOperator && secondNum) {
         evaluateExpression();
       }
